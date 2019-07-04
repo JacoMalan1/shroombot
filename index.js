@@ -54,7 +54,9 @@ function update() {
 app.use(express.json());
 app.use(express.static('public'));
 
-app.post(`/webhooks/${API_KEY}`, (req, res) => {
+const encodedKey = encodeURIComponent(API_KEY);
+
+app.post(`/webhooks/${encodedKey}`, (req, res) => {
 
     console.log('Got update!');
     console.log(req.body);
@@ -68,7 +70,8 @@ app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 console.log(`Update URL: ${UPDATE_URL}`);
 
-let params = JSON.stringify({ url: UPDATE_URL });
+const encodedURL = UPDATE_URL + `/${encodedKey}`;
+let params = JSON.stringify({ url: encodedURL, allowed_updates: [] });
 
 sendMethod('getWebhookInfo', {})
     .then((response) => {
