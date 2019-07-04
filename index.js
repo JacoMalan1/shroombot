@@ -39,7 +39,7 @@ let params = JSON.stringify({
     url: UPDATE_URL
 
 });
-fetch(`https://api.telegram.org/${API_KEY}/setWebhook`, {
+fetch(`https://api.telegram.org/bot${API_KEY}/setWebhook`, {
     method: 'POST',
     
     headers: {
