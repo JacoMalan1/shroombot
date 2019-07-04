@@ -45,7 +45,9 @@ function update() {
         const chatID = item.message.chat.id;
         const msg = 'You said: ' + item.message.text;
 
-        sendMethod('sendMessage', { chat_id: chatID, text: msg });
+        sendMethod('sendMessage', { chat_id: chatID, text: msg })
+            .then(res => console.log(res))
+            .catch(err => console.error(err));
 
     }
     
