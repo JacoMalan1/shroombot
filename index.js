@@ -70,17 +70,21 @@ console.log(`Update URL: ${UPDATE_URL}`);
 
 let params = JSON.stringify({ url: UPDATE_URL });
 
-sendMethod('getWebhookInfo', {})
-    .then((response) => {
+// sendMethod('getWebhookInfo', {})
+//     .then((response) => {
 
-        console.log(response);
-        if (response.result.url == '') {
-            sendMethod('setWebhook', params)
-                .then(res => console.log(res))
-                .catch(err => console.error(err));
-        }
+//         console.log(response);
+//         if (response.result.url == '') {
+//             sendMethod('setWebhook', params)
+//                 .then(res => console.log(res))
+//                 .catch(err => console.error(err));
+//         }
 
-    })
+//     })
+//     .catch(err => console.error(err));
+
+sendMethod('deleteWebhook', {})
+    .then(res => console.log(res))
     .catch(err => console.error(err));
 
 sendMethod('getMe', {})
