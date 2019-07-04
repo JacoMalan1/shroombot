@@ -8,6 +8,8 @@ function callback(sender, args) {
         .then(res => res.json())
         .then(data => response = data.setup + '\n\n' + response.punchline);
 
+    return response;
+
 }
 
 module.exports = callback;
