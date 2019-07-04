@@ -54,7 +54,7 @@ function update() {
 app.use(express.json());
 app.use(express.static('public'));
 
-app.post(`/webhooks/update/${API_TOKEN}`, (req, res) => {
+app.post(`/webhooks/update/${API_KEY}`, (req, res) => {
 
     updates.push(req.body);
     res.status(200).end();
