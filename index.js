@@ -55,25 +55,40 @@ function update() {
         command.substring(1);
         args_list.splice(0, 1);
 
+        let handle = null;
+        let found = false;
+
         for (let cmd of commands) {
             for (let alias of cmd.aliases) {
                 if (alias == command) {
 
-                    cmd.execute(fromUsername, args_list).then(commandResponse => {
-
-                        console.log(`Sending response: ${commandResponse}`);
-                        sendMethod('sendMessage', { chat_id: chatID, text: commandResponse })
-                            .then(res => {
-                                if (!res.ok) {
-                                    console.error(res.description);
-                                }
-                            })
-                            .catch(err => console.log(err));
-
-                    });
+                    handle = cmd;
+                    found = true;
+                    break;
 
                 }
             }
+        }
+
+        if (found) {
+
+            handle.execute(fromUsername, args_list).then(commandResponse => {
+
+                console.log(`Sending response: ${commandResponse}`);
+                sendMethod('sendMessage', { chat_id: chatID, text: commandResponse })
+                    .then(res => {
+                        if (!res.ok) {
+                            console.error(res.description);
+                        }
+                    })
+                    .catch(err => console.log(err));
+
+            });
+
+        } else {
+
+            console.log('Command not found');
+
         }
 
     }
