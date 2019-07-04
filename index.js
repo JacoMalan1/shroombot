@@ -1,4 +1,5 @@
 const express = require('express');
+const fetch = require('node-fetch');
 
 const app = express();
 const commands = [];
@@ -19,7 +20,8 @@ express.static('public');
 
 app.post('/webhooks/update', (req, res) => {
 
-
+    console.log(req.body);
+    res.status(200).end();
 
 });
 
