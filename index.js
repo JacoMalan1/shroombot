@@ -48,4 +48,7 @@ fetch(`https://api.telegram.org/${API_KEY}/setWebhook`, {
     },
 
     body: params
-});
+})
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
