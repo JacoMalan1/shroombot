@@ -14,9 +14,10 @@ function update() {
 
 // Load environment variables
 require('dotenv').config();
-express.json()
 
-express.static('public');
+// Set up app
+app.use(express.json());
+app.use(express.static('public'));
 
 app.post('/webhooks/update', (req, res) => {
 
