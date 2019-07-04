@@ -51,8 +51,8 @@ function update() {
             continue;
 
         const args_list = msg.split(' ');
-        const cmdName = args_list[0];
-        cmdName.substring(1);
+        let cmdName = args_list[0];
+        cmdName = cmdName.substring(1);
         args_list.splice(0, 1);
 
         console.log(`Got command: ${cmdName}`);
