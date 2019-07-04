@@ -74,7 +74,7 @@ sendMethod('getWebhookInfo', {})
     .then((response) => {
 
         console.log(response);
-        if (response.url == '') {
+        if (response.result.url == '') {
             sendMethod('setWebhook', params)
                 .then(res => console.log(res))
                 .catch(err => console.error(err));
