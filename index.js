@@ -32,6 +32,8 @@ app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 const API_KEY = process.env.API_KEY;
 const UPDATE_URL = process.env.UPDATE_URL;
 
+console.log(`Update URL: ${UPDATE_URL}`);
+
 let params = JSON.stringify({
 
     url: UPDATE_URL
