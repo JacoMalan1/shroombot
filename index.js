@@ -43,6 +43,9 @@ function update() {
 
     for (let item of cur_updates) {
 
+        if (!item.message)
+            break;
+
         const chatID = item.message.chat.id;
         const fromUsername = item.message.from.username;
         const msg = item.message.text;
