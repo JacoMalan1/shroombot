@@ -8,7 +8,7 @@ require('dotenv').config();
 const API_KEY = process.env.API_KEY;
 const UPDATE_URL = process.env.UPDATE_URL;
 
-async function sendMethod(name, params) {
+async function sendMethod(name, reqBody) {
 
     const response =  await fetch(`https://api.telegram.org/bot${API_KEY}/${name}`, {
 
@@ -19,7 +19,7 @@ async function sendMethod(name, params) {
             'Accepts': 'application/json'
         },
         
-        body: JSON.stringify(params)
+        body: JSON.stringify(reqBody)
 
     });
 
@@ -54,7 +54,7 @@ function update() {
 app.use(express.json());
 app.use(express.static('public'));
 
-app.post('/webhooks/update', (req, res) => {
+app.post(`/webhooks/update/${API_TOKEN}`, (req, res) => {
 
     updates.push(req.body);
     res.status(200).end();
@@ -73,10 +73,15 @@ let params = JSON.stringify({
 });
 
 sendMethod('setWebhook', params)
-    .then(res => console.log(res))
-    .catch(err => console.error(err));
-sendMethod('getMe', {})
-    .then(res => console.log(res))
+    .then(res => {
+
+        console.log(res.description);
+
+        sendMethod('getMe', {})
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
+
+    })
     .catch(err => console.error(err));
 
 setInterval(update, 1000);
