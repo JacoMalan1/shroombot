@@ -68,10 +68,10 @@ app.post(`/webhooks/${encodedKey}`, (req, res) => {
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
-console.log(`Update URL: ${UPDATE_URL}`);
-
 const encodedURL = UPDATE_URL + `/${encodedKey}`;
 let params = JSON.stringify({ url: encodedURL, allowed_updates: [] });
+
+console.log(`Update URL: ${encodedURL}`);
 
 sendMethod('getWebhookInfo', {})
     .then((response) => {
