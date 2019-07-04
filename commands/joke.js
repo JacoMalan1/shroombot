@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 async function callback(sender, args) {
 
     const api_url = 'https://official-joke-api.appspot.com/random_joke';
