@@ -1,5 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch');
+const Command = require('./command.js');
 
 const app = express();
 const commands = [];
@@ -43,11 +44,33 @@ function update() {
     for (let item of cur_updates) {
 
         const chatID = item.message.chat.id;
-        const msg = 'You said: ' + item.message.text;
+        const fromUsername = item.message.from.username;
+        const msg = item.message.text;
 
-        sendMethod('sendMessage', { chat_id: chatID, text: msg })
-            .then(res => console.log(res))
-            .catch(err => console.error(err));
+        if (msg[0] != '/')
+            continue;
+
+        const args_list = msg.split(' ');
+        const command = args_list[0];
+        command.splice(0, 1);
+        args_list.splice(0, 1);
+
+        let response = '';
+        for (let cmd of commands) {
+            for (let alias of cmd.aliases) {
+                if (alias == command) {
+                    response = cmd.execute(fromUsername, args_list);
+                }
+            }
+        }
+
+        sendMethod('sendMessage', { chat_id: chatID, text: response })
+            .then(res => {
+                if (!res.ok) {
+                    console.error(res.description);
+                }
+            })
+            .catch(err => console.log(err));
 
     }
     
@@ -94,5 +117,7 @@ sendMethod('getWebhookInfo', {})
 sendMethod('getMe', {})
     .then(response => console.log(response))
     .catch(err => console.error(err));
+
+commands.push(new Command(['joke'], require('commands/pun.js')));
 
 setInterval(update, 1000);
