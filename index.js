@@ -19,7 +19,7 @@ async function sendMethod(name, reqBody) {
             'Accepts': 'application/json'
         },
         
-        body: JSON.stringify(reqBody)
+        body: reqBody
 
     });
 
