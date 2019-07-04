@@ -15,7 +15,7 @@ function update() {
 require('dotenv').config();
 express.json()
 
-express.static()
+express.static('public');
 
 app.post('/webhooks/update', (req, res) => {
 
