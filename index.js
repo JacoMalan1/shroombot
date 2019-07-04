@@ -51,16 +51,18 @@ function update() {
             continue;
 
         const args_list = msg.split(' ');
-        const command = args_list[0];
-        command.substring(1);
+        const cmdName = args_list[0];
+        cmdName.substring(1);
         args_list.splice(0, 1);
+
+        console.log(`Got command: ${cmdName}`);
 
         let handle = null;
         let found = false;
 
         for (let cmd of commands) {
-            for (let alias of cmd.aliases) {
-                if (alias == command) {
+            for (let name of cmd.names) {
+                if (name == cmdName) {
 
                     handle = cmd;
                     found = true;

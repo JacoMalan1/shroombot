@@ -2,12 +2,12 @@ class Command {
 
     /**
      * Constructs a new Command object.
-     * @param {Array<String>} aliases All the possible names for the command.
+     * @param {Array<String>} names All the possible names for the command.
      * @param {*} callback A callback to execute.
      */
-    constructor(aliases, callback) {
+    constructor(names, callback) {
 
-        this.aliases = aliases;
+        this.names = aliases;
         this.callback = callback;
 
     }
