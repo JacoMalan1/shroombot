@@ -43,7 +43,7 @@ function update() {
     for (let item of cur_updates) {
 
         const chatID = item.message.chat.id;
-        const msg = item.message.text;
+        const msg = 'You said: ' + item.message.text;
 
         sendMethod('sendMessage', { chat_id: chatID, text: msg });
 
