@@ -147,5 +147,6 @@ sendMethod('getMe', {})
     .catch(err => console.error(err));
 
 commands.push(new Command(['joke'], require('./commands/joke.js')));
+commands.push(new Command(['bt', 'budumtss'], require('./commands/budumtss.js')));
 
 setInterval(update, 1000);
