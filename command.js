@@ -7,7 +7,7 @@ class Command {
      */
     constructor(names, callback) {
 
-        this.names = aliases;
+        this.names = names;
         this.callback = callback;
 
     }
