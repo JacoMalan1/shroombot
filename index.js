@@ -118,6 +118,6 @@ sendMethod('getMe', {})
     .then(response => console.log(response))
     .catch(err => console.error(err));
 
-commands.push(new Command(['joke'], require('commands/pun.js')));
+commands.push(new Command(['joke'], require('commands/joke.js')));
 
 setInterval(update, 1000);
