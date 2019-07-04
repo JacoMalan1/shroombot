@@ -68,22 +68,20 @@ app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 console.log(`Update URL: ${UPDATE_URL}`);
 
-let params = JSON.stringify({
+let params = JSON.stringify({ url: UPDATE_URL });
 
-    url: UPDATE_URL
+sendMethod('getWebhookInfo', {})
+    .then((response) => {
 
-});
-
-sendMethod('setWebhook', params)
-    .then(res => {
-
-        console.log(res.description);
-
-        sendMethod('getMe', {})
-            .then(response => console.log(response))
-            .catch(err => console.error(err));
+        if (response.url == '') {
+            sendMethod('setWebhook', params).catch(err => console.error(err));
+        }
 
     })
+    .catch(err => console.error(err));
+
+sendMethod('getMe', {})
+    .then(response => console.log(response))
     .catch(err => console.error(err));
 
 setInterval(update, 1000);
