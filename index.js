@@ -73,6 +73,7 @@ let params = JSON.stringify({ url: UPDATE_URL });
 sendMethod('getWebhookInfo', {})
     .then((response) => {
 
+        console.log(response);
         if (response.url == '') {
             sendMethod('setWebhook', params).catch(err => console.error(err));
         }
