@@ -52,7 +52,7 @@ function update() {
 
         const args_list = msg.split(' ');
         const command = args_list[0];
-        command.splice(0, 1);
+        command.substring(1);
         args_list.splice(0, 1);
 
         let response = '';
