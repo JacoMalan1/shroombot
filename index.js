@@ -56,6 +56,8 @@ app.use(express.static('public'));
 
 app.post(`/webhooks/update/${API_KEY}`, (req, res) => {
 
+    console.log('Got update!');
+    console.log(req.body);
     updates.push(req.body);
     res.status(200).end();
 
