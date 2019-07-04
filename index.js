@@ -46,6 +46,7 @@ function update() {
         const chatID = item.message.chat.id;
         const fromUsername = item.message.from.username;
         const msg = item.message.text;
+        const msgID = item.message.message_id;
 
         if (msg[0] != '/')
             continue;
@@ -77,8 +78,11 @@ function update() {
             handle.execute(fromUsername, args_list).then(commandResponse => {
 
                 console.log(`Sending response: ${commandResponse}`);
-                sendMethod('sendMessage', { chat_id: chatID, text: commandResponse })
-                    .then(res => {
+                sendMethod('sendMessage', { 
+                    chat_id: chatID, 
+                    text: commandResponse,
+                    reply_to_message_id: msgID
+                }).then(res => {
                         if (!res.ok) {
                             console.error(res.description);
                         }
