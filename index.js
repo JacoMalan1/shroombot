@@ -59,6 +59,10 @@ function update() {
         cmdName = cmdName.substring(1);
         args_list.splice(0, 1);
 
+        if (cmdName.indexOf('@') > -1) {
+            cmdName = cmdName.substring(0, cmdName.indexOf('@'));
+        }
+
         console.log(`Got command: ${cmdName}`);
 
         let handle = null;
