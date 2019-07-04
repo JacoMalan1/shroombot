@@ -61,6 +61,7 @@ function update() {
 
                     cmd.execute(fromUsername, args_list).then(commandResponse => {
 
+                        console.log(`Sending response: ${commandResponse}`);
                         sendMethod('sendMessage', { chat_id: chatID, text: commandResponse })
                             .then(res => {
                                 if (!res.ok) {
