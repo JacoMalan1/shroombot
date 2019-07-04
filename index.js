@@ -55,22 +55,25 @@ function update() {
         command.substring(1);
         args_list.splice(0, 1);
 
-        let response = '';
         for (let cmd of commands) {
             for (let alias of cmd.aliases) {
                 if (alias == command) {
-                    response = cmd.execute(fromUsername, args_list);
+
+                    cmd.execute(fromUsername, args_list).then(commandResponse => {
+
+                        sendMethod('sendMessage', { chat_id: chatID, text: commandResponse })
+                            .then(res => {
+                                if (!res.ok) {
+                                    console.error(res.description);
+                                }
+                            })
+                            .catch(err => console.log(err));
+
+                    });
+
                 }
             }
         }
-
-        sendMethod('sendMessage', { chat_id: chatID, text: response })
-            .then(res => {
-                if (!res.ok) {
-                    console.error(res.description);
-                }
-            })
-            .catch(err => console.log(err));
 
     }
     
