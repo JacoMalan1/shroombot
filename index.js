@@ -161,6 +161,7 @@ registerCommand(['bt', 'budumtss'], require('./commands/budumtss.js'));
 registerCommand(['pun'], require('./commands/pun.js'));
 registerCommand(['slap'], require('./commands/slap.js'));
 registerCommand(['help'], require('./commands/help.js'));
+registerCommand(['kill'], require('./commands/kill.js'));
 
 // Set a timer to process updates every second.
 setInterval(update, 1000);
