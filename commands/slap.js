@@ -11,9 +11,9 @@ async function callback(sender, args) {
     const victor = sender.first_name;
     const victim = args[0];
 
-    slap = slap.replace('VICTIM', victim).replace('VICTOR', victor);
+    const response = slap.replace('VICTIM', victim).replace('VICTOR', victor);
 
-    return slap;
+    return response;
 
 }
 
