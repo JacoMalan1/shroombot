@@ -13,6 +13,8 @@ async function callback(sender, args) {
     searchString = searchString.replace(' ', '_'); // Can never be too safe.
     searchString = searchString.substring(0, searchString.length - 2); // Chop of the last _
 
+    console.log(`Query string: ${searchString}`);
+
     const response = await fetch(wiki_api_url + searchString, {
 
         method: 'GET',
@@ -27,7 +29,7 @@ async function callback(sender, args) {
     const summary = data.extract;
 
     let result = title + '\n\n' + summary;
-    
+
     return result;
 
 }
