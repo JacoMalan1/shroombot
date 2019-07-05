@@ -11,7 +11,7 @@ async function callback(sender, args) {
     let searchString = '';
     args.forEach(arg => searchString += arg + '_');
     searchString = searchString.replace(' ', '_'); // Can never be too safe.
-    searchString = searchString.substring(0, searchString.length - 2); // Chop of the last _
+    searchString = searchString.substring(0, searchString.length - 1); // Chop of the last _
 
     console.log(`Query string: ${searchString}`);
 
