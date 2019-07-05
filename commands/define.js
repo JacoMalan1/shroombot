@@ -6,8 +6,11 @@ async function callback(sender, args) {
     if (args.length < 1) {
         return 'Not enough arguments!';
     }
+    
+    let search = '';
+    args.forEach(arg => search += arg);
 
-    const search = args[0];
+    search = encodeURIComponent(search);
 
     const response = await fetch(`${words_api_url}/words/${search}/definitions`, {
         method: 'GET',
@@ -21,6 +24,10 @@ async function callback(sender, args) {
     const definitions = data.definitions;
 
     let result = '';
+
+    if (!definitions) {
+        return 'No results found!';
+    }
 
     for (let def of definitions) {
 
