@@ -168,6 +168,7 @@ registerCommand(['kill'], require('./commands/kill.js'));
 registerCommand(['define', 'def'], require('./commands/define.js'));
 registerCommand(['wikipedia', 'wiki'], require('./commands/wikipedia.js'));
 registerCommand(['wolframalpha', 'wolfram', 'wa', 'calc'], require('./commands/wolframalpha.js'));
+registerCommand(['urban', 'urbandictionary', 'ud'], require('./commands/urban.js'));
 
 console.log('Defined commands are: ');
 commands.forEach(cmd => console.log(cmd.names));
