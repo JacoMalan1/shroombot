@@ -26,13 +26,8 @@ async function callback(sender, args) {
     const title = data.displaytitle;
     const summary = data.extract;
 
-    const link_desktop = data.content_urls.desktop.page;
-    const link_mobile = data.content_urls.mobile.page;
-
-    let result = title + '\n\n' + summary + '\n\n';
-    result += `Desktop: ${link_desktop}\n`;
-    result += `Mobile: ${link_mobile}`;
-
+    let result = title + '\n\n' + summary;
+    
     return result;
 
 }
