@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const api_url = 'https://wordsapiv1.p.rapidapi.com';
+const words_api_url = 'https://wordsapiv1.p.rapidapi.com';
 
 async function callback(sender, args) {
 
@@ -9,10 +9,10 @@ async function callback(sender, args) {
 
     const search = args[0];
 
-    const response = await fetch(`${api_url}/words/${search}/definitions`, {
+    const response = await fetch(`${words_api_url}/words/${search}/definitions`, {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com',
+            'X-RapidAPI-Host': words_api_url.replace('https://', ''),
             'X-RapidAPI-Key': process.env.RAPID_API_KEY
         }
     });
