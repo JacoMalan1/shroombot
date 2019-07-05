@@ -1,3 +1,10 @@
+/**
+ * The core protocol and function-callback tree
+ * of the fungus shroombot.
+ * 
+ * aka. the init function and main loop
+ */
+
 const express = require('express');
 const fetch = require('node-fetch');
 const Command = require('./command.js');
@@ -47,7 +54,7 @@ function update() {
             break;
 
         const chatID = item.message.chat.id;
-        const fromUsername = item.message.from.username;
+        const fromUser = item.message.from;
         const msg = item.message.text;
         const msgID = item.message.message_id;
 
@@ -82,7 +89,7 @@ function update() {
 
         if (found) {
 
-            handle.execute(fromUsername, args_list).then(commandResponse => {
+            handle.execute(fromUser, args_list).then(commandResponse => {
 
                 console.log(`Sending response: ${commandResponse}`);
                 sendMethod('sendMessage', { 
@@ -151,6 +158,8 @@ sendMethod('getMe', {})
 registerCommand(['joke'], require('./commands/joke.js'));
 registerCommand(['bt', 'budumtss'], require('./commands/budumtss.js'));
 registerCommand(['pun'], require('./commands/pun.js'));
+
+
 
 // Set a timer to process updates every second.
 setInterval(update, 1000);

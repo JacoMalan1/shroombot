@@ -1,0 +1,7 @@
+{
+    "commands": [
+        { "name": "joke", "description": "Get a random joke" },
+        { "name": "budumtss", "description": "I'm not explaining this" },
+        { "name": "pun", "description": "Get a random pun" }
+    ]
+}
