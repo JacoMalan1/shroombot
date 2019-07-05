@@ -164,5 +164,8 @@ registerCommand(['help'], require('./commands/help.js'));
 registerCommand(['kill'], require('./commands/kill.js'));
 registerCommand(['define, def'], require('./commands/define.js'));
 
+console.log('Defined commands are: ');
+commands.forEach(cmd => console.log(cmd.names));
+
 // Set a timer to process updates every second.
 setInterval(update, 1000);
