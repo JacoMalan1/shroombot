@@ -29,8 +29,8 @@ async function sendMethod(name, reqBody) {
 
 }
 
-function registerCommand(command) {
-    commands.push(command);
+function registerCommand(commandNames, commandCallback) {
+    commands.push(new Command(commandNames, commandCallback));
 }
 
 let updates = [];
@@ -108,8 +108,6 @@ function update() {
     
 }
 
-// Load environment variables
-
 // Set up app
 app.use(express.json());
 app.use(express.static('public'));
@@ -150,7 +148,9 @@ sendMethod('getMe', {})
     .then(response => console.log(response))
     .catch(err => console.error(err));
 
-commands.push(new Command(['joke'], require('./commands/joke.js')));
-commands.push(new Command(['bt', 'budumtss'], require('./commands/budumtss.js')));
+registerCommand(['joke'], require('./commands/joke.js'));
+registerCommand(['bt', 'budumtss'], require('./commands/budumtss.js'));
+registerCommand(['pun'], require('./commands/pun.js'));
 
+// Set a timer to process updates every second.
 setInterval(update, 1000);

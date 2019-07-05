@@ -1,0 +1,5 @@
+async function callback(sender, args) {
+    // Your command code here
+}
+
+module.exports = callback;
