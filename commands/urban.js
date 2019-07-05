@@ -16,7 +16,7 @@ async function callback(sender, args) {
     const response = await fetch(`${urban_api_url}?term=${search}`, {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Host': words_api_url.replace('https://', ''),
+            'X-RapidAPI-Host': urban_api_url.replace('https://', ''),
             'X-RapidAPI-Key': process.env.RAPID_API_KEY
         }
     });
