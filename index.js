@@ -53,6 +53,9 @@ function update() {
         if (!item.message)
             break;
 
+        if (!item.message.text)
+            break;
+
         const chatID = item.message.chat.id;
         const fromUser = item.message.from;
         const msg = item.message.text;
