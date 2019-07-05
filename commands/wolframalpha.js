@@ -9,6 +9,8 @@ async function callback(sender, args) {
     searchString = searchString.substring(0, searchString.length - 1);
     searchString = encodeURIComponent(searchString);
 
+    console.log(`Query string: ${searchString}`);
+
     const response = await fetch(wolfram_api_url + `&i=${searchString}`);
     return await response.text();
 
