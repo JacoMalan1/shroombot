@@ -9,7 +9,7 @@ async function callback(sender, args) {
     }
     
     let search = '';
-    args.forEach(arg => search += arg);
+    args.forEach(arg => search += arg + ' ');
 
     search = encodeURIComponent(search);
 
