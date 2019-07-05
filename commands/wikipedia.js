@@ -25,7 +25,7 @@ async function callback(sender, args) {
     });
 
     const data = await response.json();
-    const title = data.displaytitle;
+    const title = data.title;
     const summary = data.extract;
 
     let result = title + '\n\n' + summary;
