@@ -8,9 +8,12 @@ async function callback(sender, args) {
         return 'Not enough arguments!';
     }
 
-    const title = args[0];
+    let searchString = '';
+    args.forEach(arg => searchString += arg + '_');
+    searchString = searchString.replace(' ', '_'); // Can never be too safe.
+    searchString = searchString.substring(0, searchString.length - 2); // Chop of the last _
 
-    const response = await fetch(wiki_api_url + title, {
+    const response = await fetch(wiki_api_url + searchString, {
 
         method: 'GET',
         header: {
