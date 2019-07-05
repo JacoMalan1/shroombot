@@ -2,6 +2,9 @@
     "commands": [
         { "name": "joke", "description": "Get a random joke" },
         { "name": "budumtss", "description": "I'm not explaining this" },
-        { "name": "pun", "description": "Get a random pun" }
+        { "name": "pun", "description": "Get a random pun" },
+        { "name": "slap", "description": "Slap the mofo!"},
+        { "name": "kill", "description": "C'mon man, seriously?" },
+        { "name": "help", "description": "Display a list of possible commands" }
     ]
 }
