@@ -8,6 +8,7 @@
         { "name": "help", "description": "Display a list of possible commands" },
         { "name": "wikipedia, wiki", "description": "Get a wikipedia article" },
         { "name": "wolframalpha, wa, wolfram, calc", "description": "Get a Wolfram|Alpha search result." },
-        { "name": "define, def", "description": "Get the definition of a word" }
+        { "name": "define, def", "description": "Get the definition of a word" },
+        { "name": "urbandictionary, urban, ud", "description": "Get a definition from Urban Dictionary"}
     ]
 }
