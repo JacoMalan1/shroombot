@@ -155,11 +155,12 @@ sendMethod('getMe', {})
     .then(response => console.log(response))
     .catch(err => console.error(err));
 
+// registerCommand([''], require('./commands/'));
 registerCommand(['joke'], require('./commands/joke.js'));
 registerCommand(['bt', 'budumtss'], require('./commands/budumtss.js'));
 registerCommand(['pun'], require('./commands/pun.js'));
-
-
+registerCommand(['slap'], require('./commands/slap.json'));
+registerCommand(['help'], require('./commands/help.json'));
 
 // Set a timer to process updates every second.
 setInterval(update, 1000);
