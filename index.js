@@ -122,7 +122,7 @@ function update() {
 app.use(express.json());
 app.use(express.static('public'));
 
-const encodedKey = encodeURIComponent(API_KEY);
+const encodedKey = encodeURIComponent(API_KEY.replace(':', ''));
 
 app.post(`/webhooks/${encodedKey}`, (req, res) => {
 
