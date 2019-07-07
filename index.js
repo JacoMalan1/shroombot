@@ -146,9 +146,17 @@ sendMethod('getWebhookInfo', {})
 
         console.log(response);
         if (response.result.url == '') {
-            sendMethod('setWebhook', params)
-                .then(res => console.log(res))
+            
+            fetch(`https://api.telegram.org/bot${API_KEY}/setWebhook?url=${params.url}`, {
+                method: 'GET',
+                headers: {
+                    'Accepts': 'application/json'
+                }
+            })
+                .then(res => res.json())
+                .then(data => console.log(data))
                 .catch(err => console.error(err));
+
         }
 
     })
