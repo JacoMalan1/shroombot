@@ -1,14 +1,48 @@
 {
     "commands": [
-        { "name": "joke", "description": "Get a random joke" },
-        { "name": "budumtss, bt", "description": "I'm not explaining this" },
-        { "name": "pun", "description": "Get a random pun" },
-        { "name": "slap", "description": "Slap the mofo!"},
-        { "name": "kill", "description": "C'mon man, seriously?" },
-        { "name": "help", "description": "Display a list of possible commands" },
-        { "name": "wikipedia, wiki", "description": "Get a wikipedia article" },
-        { "name": "wolframalpha, wa, wolfram, calc", "description": "Get a Wolfram|Alpha search result." },
-        { "name": "define, def", "description": "Get the definition of a word" },
-        { "name": "urbandictionary, urban, ud", "description": "Get a definition from Urban Dictionary"}
+        {
+            "name": "joke",
+            "description": "Get a random joke"
+        },
+        {
+            "name": "budumtss, bt",
+            "description": "I'm not explaining this"
+        },
+        {
+            "name": "pun",
+            "description": "Get a random pun"
+        },
+        {
+            "name": "slap",
+            "description": "Slap the mofo!"
+        },
+        {
+            "name": "kill",
+            "description": "C'mon man, seriously?"
+        },
+        {
+            "name": "help",
+            "description": "Display a list of possible commands"
+        },
+        {
+            "name": "wikipedia, wiki",
+            "description": "Get a wikipedia article"
+        },
+        {
+            "name": "wolframalpha, wa, wolfram, calc",
+            "description": "Get a Wolfram|Alpha search result."
+        },
+        {
+            "name": "define, def",
+            "description": "Get the definition of a word"
+        },
+        {
+            "name": "urbandictionary, urban, ud",
+            "description": "Get a definition from Urban Dictionary"
+        },
+        {
+            "name": "facepalm",
+            "description": "*facepalm*"
+        }
     ]
 }
