@@ -1,14 +1,11 @@
 async function callback(sender, args) {
-    
+
     if (args.length < 1) {
         return 'Not enough arguments!';
     }
 
     const victor = sender.first_name;
     const victim = args[0];
-
-    const stuff = '';
-    stuff.toLowerCase();
 
     if (victim.toLowerCase() == 'franco') {
         // Special detrimental case for the biggest idiot in the world
