@@ -18,15 +18,15 @@ const UPDATE_URL = process.env.UPDATE_URL;
 
 async function sendMethod(name, reqBody) {
 
-    const response =  await fetch(`https://api.telegram.org/bot${API_KEY}/${name}`, {
+    const response = await fetch(`https://api.telegram.org/bot${API_KEY}/${name}`, {
 
         method: 'POST',
-        
+
         headers: {
             'Content-Type': 'application/json',
             'Accepts': 'application/json'
         },
-        
+
         body: JSON.stringify(reqBody)
 
     });
@@ -95,15 +95,15 @@ function update() {
             handle.execute(fromUser, args_list).then(commandResponse => {
 
                 console.log(`Sending response: ${commandResponse}`);
-                sendMethod('sendMessage', { 
-                    chat_id: chatID, 
+                sendMethod('sendMessage', {
+                    chat_id: chatID,
                     text: commandResponse,
                     reply_to_message_id: msgID
                 }).then(res => {
-                        if (!res.ok) {
-                            console.error(res.description);
-                        }
-                    })
+                    if (!res.ok) {
+                        console.error(res.description);
+                    }
+                })
                     .catch(err => console.log(err));
 
             }).catch(err => console.error(err));
@@ -115,7 +115,7 @@ function update() {
         }
 
     }
-    
+
 }
 
 // Set up app
@@ -146,7 +146,7 @@ sendMethod('getWebhookInfo', {})
 
         console.log(response);
         if (response.result.url == '') {
-            
+
             fetch(`https://api.telegram.org/bot${API_KEY}/setWebhook?url=${encodedURL}`, {
                 method: 'GET',
                 headers: {
@@ -177,6 +177,7 @@ registerCommand(['define', 'def'], require('./commands/define.js'));
 registerCommand(['wikipedia', 'wiki'], require('./commands/wikipedia.js'));
 registerCommand(['wolframalpha', 'wolfram', 'wa', 'calc'], require('./commands/wolframalpha.js'));
 registerCommand(['urban', 'urbandictionary', 'ud'], require('./commands/urban.js'));
+registerCommand(['facepalm'], require('./commands/facepalm.js'));
 
 console.log('Defined commands are: ');
 commands.forEach(cmd => console.log(cmd.names));
