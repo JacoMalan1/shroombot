@@ -16,6 +16,9 @@ require('dotenv').config();
 const API_KEY = process.env.API_KEY;
 const UPDATE_URL = process.env.UPDATE_URL;
 
+// General info object
+let gio = {};
+
 async function sendMethod(name, reqBody) {
 
     const response = await fetch(`https://api.telegram.org/bot${API_KEY}/${name}`, {
@@ -61,8 +64,12 @@ function update() {
         const msg = item.message.text;
         const msgID = item.message.message_id;
 
-        if (msg[0] != '/')
+        if (msg[0] != '/') {
+
+            gio.last_non_command = item.message;
             continue;
+
+        }
 
         const args_list = msg.split(' ');
         let cmdName = args_list[0];
@@ -92,19 +99,30 @@ function update() {
 
         if (found) {
 
-            handle.execute(fromUser, args_list).then(commandResponse => {
+            handle.execute(fromUser, args_list, item.message, gio).then(commandResponse => {
 
-                console.log(`Sending response: ${commandResponse}`);
-                sendMethod('sendMessage', {
-                    chat_id: chatID,
-                    text: commandResponse,
-                    reply_to_message_id: msgID
-                }).then(res => {
-                    if (!res.ok) {
-                        console.error(res.description);
-                    }
-                })
-                    .catch(err => console.log(err));
+                if (typeof (commandResponse) == "string") {
+
+                    console.log(`Sending response: ${commandResponse}`);
+                    sendMethod('sendMessage', {
+                        chat_id: chatID,
+                        text: commandResponse,
+                        reply_to_message_id: msgID
+                    }).then(res => {
+                        if (!res.ok) {
+                            console.error(res.description);
+                        }
+                    }).catch(err => console.log(err));
+
+                } else {
+
+                    commandResponse.send().then(res => {
+                        if (!res.ok) {
+                            console.error(res.description);
+                        }
+                    }).catch(err => console.error(err));
+
+                }
 
             }).catch(err => console.error(err));
 
@@ -178,6 +196,13 @@ registerCommand(['wikipedia', 'wiki'], require('./commands/wikipedia.js'));
 registerCommand(['wolframalpha', 'wolfram', 'wa', 'calc'], require('./commands/wolframalpha.js'));
 registerCommand(['urban', 'urbandictionary', 'ud'], require('./commands/urban.js'));
 registerCommand(['facepalm'], require('./commands/facepalm.js'));
+
+// QuoteDB commands
+registerCommand(['newqdb'], require('newqdb.js'));
+registerCommand(['grab'], require('grab.js'));
+registerCommand(['rquote'], require('rquote.js'));
+registerCommand(['getquote'], require('getquote.js'));
+registerCommand(['allquotes'], require('allquotes.js'));
 
 console.log('Defined commands are: ');
 commands.forEach(cmd => console.log(cmd.names));
