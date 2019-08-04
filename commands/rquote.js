@@ -36,6 +36,7 @@ async function callback(sender, args, msg, gio) {
     }
 
     const docs = await db.collection(colName).where('user_name', '==', args[0]);
+    console.log(docs);
 
     if (docs.length < 1) {
 
@@ -55,6 +56,7 @@ async function callback(sender, args, msg, gio) {
 
         const quote = docs[Math.floor(Math.random() * docs.length)];
         response = `(${quote.id})${quote.user_name}: ${quote.text}`;
+
         console.log(`Sending response: ${response}`);
         sendMethod('sendMessage', {
             chat_id: msg.chat.id,
