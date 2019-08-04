@@ -7,11 +7,6 @@ async function callback(sender, args, msg) {
 
     let response = 'No quote found for that user!';
 
-    if (args.length < 1) {
-        response = 'Not enough arguments!';
-        return response;
-    }
-
     db.loadDatabase((err) => {
 
         if (args.length >= 1) {
