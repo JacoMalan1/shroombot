@@ -17,7 +17,7 @@ class Command {
      * @param {*} sender The literal From object from telegram.
      * @param {Array<String>} args A list of arguments to be passed to the command.
      */
-    execute(sender, args) {
+    execute(sender, args, msg, gio) {
 
         if (this.callback != null) {
             return this.callback(sender, args);
