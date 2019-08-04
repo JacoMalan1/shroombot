@@ -13,7 +13,8 @@ async function callback(sender, args, msg, gio) {
         return 'You are not an admin!';
     }
 
-    const ignore_list = JSON.parse(process.env.IGNORE_LIST);
+    const json_list = process.env.IGNORE_LIST || '[]';
+    const ignore_list = JSON.parse(json_list);
     ignore_list.push(args[0]);
     process.env.IGNORE_LIST = JSON.stringify(ignore_list);
 
