@@ -23,53 +23,48 @@ async function sendMethod(name, reqBody) {
 
 async function callback(sender, args, msg, gio) {
 
-    const dbName = `./assets/${msg.chat.id}.db`;
+    const db = gio.firebaseDB;
+    const colName = `${msg.chat.id}_quotes`;
 
     let response = '';
 
     if (args.length < 1) {
         response = 'Not enough arguments!';
-        done = true;
+        return null;
     }
 
-    await db.loadDatabase((err) => {
+    const docs = await db.collection('colName').where('id', '==', args[0]).get();
 
-        db.find({ id: args[0] }, (err, docs) => {
+    if (docs.length < 1) {
 
-            if (docs.length < 1) {
-
-                response = 'Quote not found!';
-                console.log(`Sending response: ${response}`);
-                sendMethod('sendMessage', {
-                    chat_id: msg.chat.id,
-                    text: response,
-                    reply_to_message_id: msg.message_id
-                }).then(res => {
-                    if (!res.ok) {
-                        console.error(res.description);
-                    }
-                }).catch(err => console.log(err));
-
-            } else {
-
-                const quote = docs[0];
-                response = `(${quote.id})${quote.user_name}: ${quote.text}`;
-                console.log(`Sending response: ${response}`);
-                sendMethod('sendMessage', {
-                    chat_id: msg.chat.id,
-                    text: response,
-                    reply_to_message_id: msg.message_id
-                }).then(res => {
-                    if (!res.ok) {
-                        console.error(res.description);
-                    }
-                }).catch(err => console.log(err));
-
+        response = 'Quote not found!';
+        console.log(`Sending response: ${response}`);
+        sendMethod('sendMessage', {
+            chat_id: msg.chat.id,
+            text: response,
+            reply_to_message_id: msg.message_id
+        }).then(res => {
+            if (!res.ok) {
+                console.error(res.description);
             }
+        }).catch(err => console.log(err));
 
-        });
+    } else {
 
-    });
+        const quote = docs[0];
+        response = `(${quote.id})${quote.user_name}: ${quote.text}`;
+        console.log(`Sending response: ${response}`);
+        sendMethod('sendMessage', {
+            chat_id: msg.chat.id,
+            text: response,
+            reply_to_message_id: msg.message_id
+        }).then(res => {
+            if (!res.ok) {
+                console.error(res.description);
+            }
+        }).catch(err => console.log(err));
+
+    }
 
     return null;
 

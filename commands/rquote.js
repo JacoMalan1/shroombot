@@ -23,10 +23,10 @@ async function sendMethod(name, reqBody) {
 
 }
 
-async function callback(sender, args, msg) {
+async function callback(sender, args, msg, gio) {
 
-    const dbName = `./assets/${msg.chat.id}.db`;
-    const db = new Datastore({ filename: dbName, inMemoryOnly: false });
+    const colName = `${msg.chat.id}_quotes`;
+    const db = gio.firebaseDB;
 
     let response = 'Stand by...';
 
@@ -35,45 +35,38 @@ async function callback(sender, args, msg) {
         return response;
     }
 
-    let done = false;
-    await db.loadDatabase((err) => {
+    const docs = await db.collection(colName).where('user_name', '==', args[0]);
 
-        db.find({ user_name: args[0] }, (err, docs) => {
+    if (docs.length < 1) {
 
-            if (docs.length < 1) {
-
-                response = 'No quote found for that user!';
-                console.log(`Sending response: ${response}`);
-                sendMethod('sendMessage', {
-                    chat_id: msg.chat.id,
-                    text: response,
-                    reply_to_message_id: msg.message_id
-                }).then(res => {
-                    if (!res.ok) {
-                        console.error(res.description);
-                    }
-                }).catch(err => console.log(err));
-
-            } else {
-
-                const quote = docs[Math.floor(Math.random() * docs.length)];
-                response = `(${quote.id})${quote.user_name}: ${quote.text}`;
-                console.log(`Sending response: ${response}`);
-                sendMethod('sendMessage', {
-                    chat_id: msg.chat.id,
-                    text: response,
-                    reply_to_message_id: msg.message_id
-                }).then(res => {
-                    if (!res.ok) {
-                        console.error(res.description);
-                    }
-                }).catch(err => console.log(err));
-
+        response = 'No quote found for that user!';
+        console.log(`Sending response: ${response}`);
+        sendMethod('sendMessage', {
+            chat_id: msg.chat.id,
+            text: response,
+            reply_to_message_id: msg.message_id
+        }).then(res => {
+            if (!res.ok) {
+                console.error(res.description);
             }
+        }).catch(err => console.log(err));
 
-        });
+    } else {
 
-    });
+        const quote = docs[Math.floor(Math.random() * docs.length)];
+        response = `(${quote.id})${quote.user_name}: ${quote.text}`;
+        console.log(`Sending response: ${response}`);
+        sendMethod('sendMessage', {
+            chat_id: msg.chat.id,
+            text: response,
+            reply_to_message_id: msg.message_id
+        }).then(res => {
+            if (!res.ok) {
+                console.error(res.description);
+            }
+        }).catch(err => console.log(err));
+
+    }
 
     return null;
 
