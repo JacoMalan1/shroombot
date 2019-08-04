@@ -35,7 +35,9 @@ async function callback(sender, args, msg, gio) {
         return response;
     }
 
-    const docs = await db.collection(colName).where('user_name', '==', args[0]).get();
+    const query = await db.collection(colName).where('user_name', '==', args[0]).get();
+    let docs = [];
+    query.forEach(doc => docs.push(doc.data()));
     console.log(docs);
 
     if (docs.length < 1) {
@@ -54,7 +56,7 @@ async function callback(sender, args, msg, gio) {
 
     } else {
 
-        const quote = docs[Math.floor(Math.random() * docs.length)].data();
+        const quote = docs[Math.floor(Math.random() * docs.length)];
         response = `(${quote.id})${quote.user_name}: ${quote.text}`;
 
         console.log(`Sending response: ${response}`);
