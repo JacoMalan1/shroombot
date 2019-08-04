@@ -3,7 +3,6 @@ const fs = require('fs');
 
 async function callback(sender, args, msg) {
 
-    console.log('Message: ' + msg);
     const dbName = `./assets/${msg.chat.id}.db`;
 
     if (fs.existsSync(`${dbName}`)) {

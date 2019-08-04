@@ -14,28 +14,58 @@ async function callback(sender, args, msg) {
 
     db.loadDatabase((err) => {
 
-        db.find({ user_name: args[0] }, (err, docs) => {
+        if (args.length >= 1) {
 
-            if (docs.length < 1) {
+            db.find({ user_name: args[0] }, (err, docs) => {
 
-                response = 'No quote found for that user!';
-                return response;
+                if (docs.length < 1) {
 
-            } else {
+                    response = 'No quote found for that user!';
+                    return response;
 
-                response = `Listing ${docs.length} quotes for user ${args[0]}:\n\n`;
+                } else {
 
-                for (quote of docs) {
+                    response = `Listing ${docs.length} quotes for user ${args[0]}:\n\n`;
 
-                    response += `(${quote.id})${quote.user_name}: ${quote.text}\n\n`;
+                    for (quote of docs) {
+
+                        response += `(${quote.id})${quote.user_name}: ${quote.text}\n\n`;
+
+                    }
+
+                    return response;
 
                 }
 
-                return response;
+            });
 
-            }
+        } else {
 
-        });
+            db.find({ _id: /.*/ }, (err, docs) => {
+
+                if (docs.length < 1) {
+
+                    response = 'No quote found for that user!';
+                    return response;
+
+                } else {
+
+                    response = `Listing ${docs.length} quotes for user ${args[0]}:\n\n`;
+
+                    for (quote of docs) {
+
+                        console.log(quote);
+                        response += `(${quote.id})${quote.user_name}: ${quote.text}\n\n`;
+
+                    }
+
+                    return response;
+
+                }
+
+            });
+
+        }
 
     });
 
