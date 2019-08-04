@@ -35,7 +35,7 @@ async function callback(sender, args, msg, gio) {
         return response;
     }
 
-    const docs = await db.collection(colName).where('user_name', '==', args[0]);
+    const docs = await db.collection(colName).where('user_name', '==', args[0]).get();
     console.log(docs);
 
     if (docs.length < 1) {

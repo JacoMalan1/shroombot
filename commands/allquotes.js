@@ -32,7 +32,7 @@ async function callback(sender, args, msg, gio) {
 
     if (args.length >= 1) {
 
-        const docs = db.collection(colName).where('user_name', '==', args[0]);
+        const docs = await db.collection(colName).where('user_name', '==', args[0]).get();
 
         if (docs.length < 1) {
 
