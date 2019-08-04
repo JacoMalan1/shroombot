@@ -66,6 +66,10 @@ function update() {
         const msg = item.message.text;
         const msgID = item.message.message_id;
 
+        if (fromUser.first_name == 'Franco') {
+            continue;
+        }
+
         if (msg[0] != '/') {
 
             gio.lnc = item.message;
