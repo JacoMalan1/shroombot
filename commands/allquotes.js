@@ -1,4 +1,5 @@
 const Datastore = require('nedb');
+const fetch = require('node-fetch');
 
 async function sendMethod(name, reqBody) {
 
