@@ -15,8 +15,8 @@ async function callback(sender, args, msg, gio) {
 
         id: msg.message_id,
         text: gio.lnc.text,
-        user_name: gio.last_non_command.from.first_name,
-        user_id: gio.last_non_command.from.id
+        user_name: gio.lnc.from.first_name,
+        user_id: gio.lnc.from.id
 
     };
 
