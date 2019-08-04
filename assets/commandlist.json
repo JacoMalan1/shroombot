@@ -43,6 +43,22 @@
         {
             "name": "facepalm",
             "description": "*facepalm*"
+        },
+        {
+            "name": "grab",
+            "description": "Grab a quote"
+        },
+        {
+            "name": "rquote",
+            "description": "Get a random quote from a specific user"
+        },
+        {
+            "name": "getquote",
+            "description": "Get a specific quote ID"
+        },
+        {
+            "name": "allquotes",
+            "description": "List quotes from a specific user"
         }
     ]
 }
