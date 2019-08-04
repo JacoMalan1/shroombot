@@ -3,12 +3,11 @@ const Datastore = require('nedb');
 async function callback(sender, args, msg) {
 
     const dbName = `./assets/${msg.chat.id}.db`;
-    const db = new Datastore(dbName);
+    const db = new Datastore({ filename: dbName, inMemoryOnly: false });
 
     let response = 'No quote found for that user!';
-    let done = false;
 
-    db.loadDatabase((err) => {
+    await db.loadDatabase((err) => {
 
         if (args.length >= 1) {
 
@@ -17,7 +16,7 @@ async function callback(sender, args, msg) {
                 if (docs.length < 1) {
 
                     response = 'No quote found for that user!';
-                    done = true;
+                    return response;
 
                 } else {
 
@@ -29,7 +28,7 @@ async function callback(sender, args, msg) {
 
                     }
 
-                    done = true;
+                    return response;
 
                 }
 
@@ -42,7 +41,7 @@ async function callback(sender, args, msg) {
                 if (docs.length < 1) {
 
                     response = 'No quote found for that user!';
-                    done = true;
+                    return response;
 
                 } else {
 
@@ -55,7 +54,7 @@ async function callback(sender, args, msg) {
 
                     }
 
-                    done = true;
+                    return response;
 
                 }
 
@@ -64,8 +63,6 @@ async function callback(sender, args, msg) {
         }
 
     });
-
-    while (!done) { continue; }
 
     return response;
 
