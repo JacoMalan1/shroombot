@@ -66,8 +66,18 @@ function update() {
         const msg = item.message.text;
         const msgID = item.message.message_id;
 
-        if (fromUser.first_name == 'Franco') {
-            continue;
+        if (process.env.IGNORE_LIST) {
+            let found = false;
+            const ignore_list = JSON.parse(process.env.IGNORE_LIST);
+            ignore_list.forEach(elem => {
+
+                if (fromUser.first_name == elem)
+                    found = true;
+            
+            });
+
+            if (found)
+                continue;
         }
 
         if (msg[0] != '/') {
