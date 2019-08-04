@@ -28,7 +28,7 @@ async function callback(sender, args, msg, gio) {
     const dbName = `./assets/${msg.chat.id}.db`;
     const db = new Datastore({ filename: dbName, inMemoryOnly: false });
 
-    let response = 'Stand by...';
+    let response = '';
 
     if (args.length < 1) {
         response = 'Not enough arguments!';
@@ -74,7 +74,7 @@ async function callback(sender, args, msg, gio) {
 
     });
 
-    return response;
+    return null;
 
 }
 

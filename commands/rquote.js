@@ -75,7 +75,7 @@ async function callback(sender, args, msg) {
 
     });
 
-    return response;
+    return null;
 
 }
 

@@ -114,7 +114,9 @@ function update() {
                         }
                     }).catch(err => console.log(err));
 
-                } else {
+                } else if (!commandResponse) { }
+
+                else {
 
                     commandResponse.send().then(res => {
                         if (!res.ok) {

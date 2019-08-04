@@ -47,7 +47,7 @@ async function callback(sender, args, msg) {
 
                     for (quote of docs) {
 
-                        response += `(${quote.id})${quote.user_name}: ${quote.text}\n\n`;
+                        response += `(${quote.id}) ${quote.user_name}: ${quote.text}\n\n`;
 
                     }
 
@@ -73,7 +73,7 @@ async function callback(sender, args, msg) {
                     for (quote of docs) {
 
                         console.log(quote);
-                        response += `(${quote.id})${quote.user_name}: ${quote.text}\n\n`;
+                        response += `(${quote.id}) ${quote.user_name}: ${quote.text}\n\n`;
 
                     }
 
@@ -96,7 +96,7 @@ async function callback(sender, args, msg) {
 
     });
 
-    return response;
+    return null;
 
 }
 
