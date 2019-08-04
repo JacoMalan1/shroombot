@@ -20,7 +20,7 @@ class Command {
     execute(sender, args, msg, gio) {
 
         if (this.callback != null) {
-            return this.callback(sender, args);
+            return this.callback(sender, args, msg, gio);
         } else {
             return '';
         }
