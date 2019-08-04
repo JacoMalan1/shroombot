@@ -57,7 +57,7 @@ async function callback(sender, args, msg, gio) {
 
     } else {
 
-        let index = Math.floor(Math.random() * docs.length);
+        const index = Math.floor(Math.random() * docs.length);
         console.log(index);
         const quote = docs[index];
         response = `(${quote.id})${quote.user_name}: ${quote.text}`;

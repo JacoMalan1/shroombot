@@ -33,7 +33,7 @@ async function callback(sender, args, msg, gio) {
         return null;
     }
 
-    const query = await db.collection(colName).where('id', '==', args[0]).get();
+    const query = await db.collection(colName).where('id', '==', parseInt(args[0])).get();
     let docs = [];
     query.forEach(doc => docs.push(doc.data()));
 
