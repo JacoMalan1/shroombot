@@ -16,7 +16,7 @@ async function callback(sender, args, msg, gio) {
     };
 
     const db = gio.firebaseDB;
-    db.collection(colName).add(entry).catch(err => console.error(err));
+    db.collection(colName).doc(entry.id.toString()).set(entry).catch(err => console.error(err));
 
     return `${entry.text}\nGrabbed! (Grab id: ${entry.id})`;
 
