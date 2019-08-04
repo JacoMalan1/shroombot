@@ -1,6 +1,4 @@
-const Datastore = require('nedb');
 const fetch = require('node-fetch');
-
 const API_KEY = process.env.API_KEY;
 
 async function sendMethod(name, reqBody) {
@@ -26,7 +24,6 @@ async function sendMethod(name, reqBody) {
 async function callback(sender, args, msg, gio) {
 
     const dbName = `./assets/${msg.chat.id}.db`;
-    const db = new Datastore({ filename: dbName, inMemoryOnly: false });
 
     let response = '';
 

@@ -1,10 +1,10 @@
-const Datastore = require('nedb');
+const firebase = require('firebase');
+require('firebase/firestore');
 const fs = require('fs');
 
 async function callback(sender, args, msg, gio) {
 
-    const dbName = `./assets/${msg.chat.id}.db`;
-    const db = new Datastore({ filename: dbName, inMemoryOnly: false });
+    const colName = `${msg.chat.id}_quotes`;
 
     const entry = {
 
@@ -15,7 +15,8 @@ async function callback(sender, args, msg, gio) {
 
     };
 
-    db.loadDatabase((err) => db.insert(entry));
+    const db = gio.firebaseDB;
+    db.collection(colName).add(entry).catch(err => console.error(err));
 
     return `${entry.text}\nGrabbed! (Grab id: ${entry.id})`;
 

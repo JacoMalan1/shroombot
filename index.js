@@ -7,11 +7,13 @@
 
 const express = require('express');
 const fetch = require('node-fetch');
+const firebase = require('firebase');
 const Command = require('./command.js');
 
 const app = express();
 const commands = [];
 require('dotenv').config();
+require('firebase/firestore');
 
 const API_KEY = process.env.API_KEY;
 const UPDATE_URL = process.env.UPDATE_URL;
@@ -200,7 +202,6 @@ registerCommand(['urban', 'urbandictionary', 'ud'], require('./commands/urban.js
 registerCommand(['facepalm'], require('./commands/facepalm.js'));
 
 // QuoteDB commands
-registerCommand(['newqdb'], require('./commands/newqdb.js'));
 registerCommand(['grab'], require('./commands/grab.js'));
 registerCommand(['rquote'], require('./commands/rquote.js'));
 registerCommand(['getquote'], require('./commands/getquote.js'));
@@ -208,6 +209,16 @@ registerCommand(['allquotes'], require('./commands/allquotes.js'));
 
 console.log('Defined commands are: ');
 commands.forEach(cmd => console.log(cmd.names));
+
+// Initialize firebase
+firebase.initializeApp({
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: `${process.env.FIREBASE_PROJECT_ID}.firebaseapp.com`,
+    projectId: process.env.FIREBASE_PROJECT_ID
+});
+
+const firebaseDB = firebase.firestore();
+gio.firebaseDB = firebaseDB;
 
 // Set a timer to process updates every second.
 setInterval(update, 1000);
