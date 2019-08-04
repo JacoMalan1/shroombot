@@ -19,7 +19,7 @@ const API_KEY = process.env.API_KEY;
 const UPDATE_URL = process.env.UPDATE_URL;
 
 // General info object
-let gio = {};
+let gio = { lnc: { text: '' } };
 
 async function sendMethod(name, reqBody) {
 
@@ -68,7 +68,7 @@ function update() {
 
         if (msg[0] != '/') {
 
-            gio.last_non_command = item.message;
+            gio.lnc = item.message;
             continue;
 
         }

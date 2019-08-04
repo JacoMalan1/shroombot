@@ -7,10 +7,14 @@ async function callback(sender, args, msg, gio) {
     const colName = `${msg.chat.id}_quotes`;
 
     console.log(gio);
+    if (!gio.lnc.text) {
+        return null;
+    }
+
     const entry = {
 
         id: msg.message_id,
-        text: gio.last_non_command.text,
+        text: gio.lnc.text,
         user_name: gio.last_non_command.from.first_name,
         user_id: gio.last_non_command.from.id
 
