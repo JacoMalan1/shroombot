@@ -1,3 +1,5 @@
 .env
 node_modules
 assets/cmdlist.txt
+*.db
+assets/*.db

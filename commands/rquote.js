@@ -1,5 +1,25 @@
 const Datastore = require('nedb');
 
+async function sendMethod(name, reqBody) {
+
+    const response = await fetch(`https://api.telegram.org/bot${API_KEY}/${name}`, {
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json',
+            'Accepts': 'application/json'
+        },
+
+        body: JSON.stringify(reqBody)
+
+    });
+
+    const jsonData = await response.json();
+    return jsonData;
+
+}
+
 async function callback(sender, args, msg) {
 
     const dbName = `./assets/${msg.chat.id}.db`;
@@ -20,13 +40,31 @@ async function callback(sender, args, msg) {
             if (docs.length < 1) {
 
                 response = 'No quote found for that user!';
-                return response;
+                console.log(`Sending response: ${response}`);
+                sendMethod('sendMessage', {
+                    chat_id: msg.chat.id,
+                    text: response,
+                    reply_to_message_id: msg.message_id
+                }).then(res => {
+                    if (!res.ok) {
+                        console.error(res.description);
+                    }
+                }).catch(err => console.log(err));
 
             } else {
 
                 const quote = docs[Math.floor(Math.random() * docs.length)];
                 response = `(${quote.id})${quote.user_name}: ${quote.text}`;
-                return response;
+                console.log(`Sending response: ${response}`);
+                sendMethod('sendMessage', {
+                    chat_id: msg.chat.id,
+                    text: response,
+                    reply_to_message_id: msg.message_id
+                }).then(res => {
+                    if (!res.ok) {
+                        console.error(res.description);
+                    }
+                }).catch(err => console.log(err));
 
             }
 
