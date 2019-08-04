@@ -11,9 +11,12 @@ async function callback(sender, args, msg) {
     }
 
     const db = new Datastore(dbName);
-    db.loadDatabase((err) => db.insert({ id: 0, user_name: 'bot', text: 'First entry', user_id: 0 }));
+    db.loadDatabase((err) => {
+        db.insert({ id: 0, user_name: 'bot', text: 'First entry', user_id: 0 })
+        console.error(err);
+    });
 
-    return `Database created!\nDebug info:\n    filename: ${dbName}`;
+    return `Database created!\nDebug info:\n    filename: '${dbName}'`;
 
 }
 
