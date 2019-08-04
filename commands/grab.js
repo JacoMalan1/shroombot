@@ -6,6 +6,7 @@ async function callback(sender, args, msg, gio) {
 
     const colName = `${msg.chat.id}_quotes`;
 
+    console.log(gio);
     const entry = {
 
         id: msg.message_id,
