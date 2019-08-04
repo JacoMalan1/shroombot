@@ -198,11 +198,11 @@ registerCommand(['urban', 'urbandictionary', 'ud'], require('./commands/urban.js
 registerCommand(['facepalm'], require('./commands/facepalm.js'));
 
 // QuoteDB commands
-registerCommand(['newqdb'], require('./newqdb.js'));
-registerCommand(['grab'], require('./grab.js'));
-registerCommand(['rquote'], require('./rquote.js'));
-registerCommand(['getquote'], require('./getquote.js'));
-registerCommand(['allquotes'], require('./allquotes.js'));
+registerCommand(['newqdb'], require('./commands/newqdb.js'));
+registerCommand(['grab'], require('./commands/grab.js'));
+registerCommand(['rquote'], require('./commands/rquote.js'));
+registerCommand(['getquote'], require('./commands/getquote.js'));
+registerCommand(['allquotes'], require('./commands/allquotes.js'));
 
 console.log('Defined commands are: ');
 commands.forEach(cmd => console.log(cmd.names));
