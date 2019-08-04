@@ -1,8 +1,8 @@
 const Datastore = require('nedb');
 
-async function callback(sender, args) {
+async function callback(sender, args, msg, gio) {
 
-    const dbName = `${msg.chat.id}.db`;
+    const dbName = `./assets/${msg.chat.id}.db`;
     const db = new Datastore(dbName);
 
     let response = 'Quote not found!';

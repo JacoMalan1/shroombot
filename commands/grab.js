@@ -3,7 +3,7 @@ const fs = require('fs');
 
 async function callback(sender, args, msg, gio) {
 
-    const dbName = `${msg.chat.id}.db`;
+    const dbName = `./assets/${msg.chat.id}.db`;
     const db = new Datastore(dbName);
 
     const entry = {

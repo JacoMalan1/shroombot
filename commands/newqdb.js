@@ -4,7 +4,7 @@ const fs = require('fs');
 async function callback(sender, args, msg) {
 
     console.log('Message: ' + msg);
-    const dbName = `${msg.chat.id}.db`;
+    const dbName = `./assets/${msg.chat.id}.db`;
 
     if (fs.existsSync(`${dbName}`)) {
         return 'Quote db already created!';
