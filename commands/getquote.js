@@ -9,9 +9,10 @@ async function callback(sender, args, msg, gio) {
 
     if (args.length < 1) {
         response = 'Not enough arguments!';
-        return response;
+        done = true;
     }
 
+    let done = false;
     db.loadDatabase((err) => {
 
         db.find({ id: args[0] }, (err, docs) => {
@@ -19,19 +20,21 @@ async function callback(sender, args, msg, gio) {
             if (docs.length < 1) {
 
                 response = 'Quote not found!';
-                return response;
+                done = true;
 
             } else {
 
                 const quote = docs[0];
                 response = `(${quote.id})${quote.user_name}: ${quote.text}`;
-                return response;
+                done = true;
 
             }
 
         });
 
     });
+
+    while (!done) { continue; }
 
     return response;
 

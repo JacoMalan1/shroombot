@@ -12,6 +12,7 @@ async function callback(sender, args, msg) {
         return response;
     }
 
+    let done = false;
     db.loadDatabase((err) => {
 
         db.find({ user_name: args[0] }, (err, docs) => {
@@ -19,19 +20,21 @@ async function callback(sender, args, msg) {
             if (docs.length < 1) {
 
                 response = 'No quote found for that user!';
-                return response;
+                done = true;
 
             } else {
 
                 const quote = docs[Math.floor(Math.random() * docs.length)];
                 response = `(${quote.id})${quote.user_name}: ${quote.text}`;
-                return response;
+                done = true;
 
             }
 
         });
 
     });
+
+    while (!done) { continue; }
 
     return response;
 

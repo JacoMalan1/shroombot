@@ -6,6 +6,7 @@ async function callback(sender, args, msg) {
     const db = new Datastore(dbName);
 
     let response = 'No quote found for that user!';
+    let done = false;
 
     db.loadDatabase((err) => {
 
@@ -16,7 +17,7 @@ async function callback(sender, args, msg) {
                 if (docs.length < 1) {
 
                     response = 'No quote found for that user!';
-                    return response;
+                    done = true;
 
                 } else {
 
@@ -28,7 +29,7 @@ async function callback(sender, args, msg) {
 
                     }
 
-                    return response;
+                    done = true;
 
                 }
 
@@ -41,7 +42,7 @@ async function callback(sender, args, msg) {
                 if (docs.length < 1) {
 
                     response = 'No quote found for that user!';
-                    return response;
+                    done = true;
 
                 } else {
 
@@ -54,7 +55,7 @@ async function callback(sender, args, msg) {
 
                     }
 
-                    return response;
+                    done = true;
 
                 }
 
@@ -63,6 +64,8 @@ async function callback(sender, args, msg) {
         }
 
     });
+
+    while (!done) { continue; }
 
     return response;
 
