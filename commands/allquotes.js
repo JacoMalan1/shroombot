@@ -43,8 +43,9 @@ async function callback(sender, args, msg, gio) {
 
             response = `Listing ${docs.length} quotes for user ${args[0]}:\n\n`;
 
-            for (quote of docs) {
+            for (doc of docs) {
 
+                const quote = doc.data();
                 response += `(${quote.id}) ${quote.user_name}: ${quote.text}\n\n`;
 
             }

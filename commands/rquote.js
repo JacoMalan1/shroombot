@@ -54,7 +54,7 @@ async function callback(sender, args, msg, gio) {
 
     } else {
 
-        const quote = docs[Math.floor(Math.random() * docs.length)];
+        const quote = docs[Math.floor(Math.random() * docs.length)].data();
         response = `(${quote.id})${quote.user_name}: ${quote.text}`;
 
         console.log(`Sending response: ${response}`);

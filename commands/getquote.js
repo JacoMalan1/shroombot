@@ -51,7 +51,7 @@ async function callback(sender, args, msg, gio) {
 
     } else {
 
-        const quote = docs[0];
+        const quote = docs[0].data();
         response = `(${quote.id})${quote.user_name}: ${quote.text}`;
         console.log(`Sending response: ${response}`);
         sendMethod('sendMessage', {
