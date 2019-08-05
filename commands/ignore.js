@@ -18,7 +18,22 @@ async function callback(sender, args, msg, gio) {
     ignore_list.push(args[0]);
     process.env.IGNORE_LIST = JSON.stringify(ignore_list);
 
-    return `Now ignoring ${args[0]}...`;
+    setTimeout(() => {
+
+        const remove_name = args[0];
+        const json_l = process.env.IGNORE_LIST || '[]';
+        const ignore_l = JSON.parse(json_l);
+
+        for (let i = ignore_l.length - 1; i >= 0; i--) {
+
+            if (ignore_l == remove_name)
+                ignore_l.splice(i, 1);
+
+        }
+
+    }, 1000);
+
+    return `Now ignoring ${args[0]} for 5mins...`;
 
 }
 

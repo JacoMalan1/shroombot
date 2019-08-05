@@ -67,6 +67,7 @@ function update() {
         const msgID = item.message.message_id;
 
         if (process.env.IGNORE_LIST) {
+
             let found = false;
             const ignore_list = JSON.parse(process.env.IGNORE_LIST);
             ignore_list.forEach(elem => {
@@ -78,6 +79,7 @@ function update() {
 
             if (found)
                 continue;
+                
         }
 
         if (msg[0] != '/') {
