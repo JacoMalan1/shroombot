@@ -41,7 +41,7 @@ async function sendMethod(name, reqBody) {
 
 }
 
-function clearIgnoreList() {
+function updateIgnoreList() {
 
     const json_list = process.env.IGNORE_LIST || '[]';
     const ignore_list = JSON.parse(json_list);
@@ -50,8 +50,16 @@ function clearIgnoreList() {
         return;
     }
 
-    console.log('Clearing the ignore list...');
-    process.env.IGNORE_LIST = '[]';
+    for (let i = ignore_list.length - 1; i >= 0; i--) {
+
+        ignore_list[i].duration -= 1;
+        if (ignore_list[i].duration <= 0) {
+            ignore_list.splice(i, 1);
+        }
+
+    }
+
+    process.env.IGNORE_LIST = JSON.stringify(ignore_list);
 
 }
 
@@ -86,7 +94,7 @@ function update() {
             const ignore_list = JSON.parse(process.env.IGNORE_LIST);
             ignore_list.forEach(elem => {
 
-                if (fromUser.first_name == elem)
+                if (fromUser.first_name == elem.user)
                     found = true;
             
             });
@@ -253,4 +261,4 @@ gio.firebaseDB = firebaseDB;
 
 // Set a timer to process updates every second.
 setInterval(update, 1000);
-setInterval(clearIgnoreList, 1000 * 60 * 5); // Run every 5 mins
+setInterval(updateIgnoreList, 1000 * 60 * 5); // Run every 5 mins
