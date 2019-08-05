@@ -41,6 +41,20 @@ async function sendMethod(name, reqBody) {
 
 }
 
+function clearIgnoreList() {
+
+    const json_list = process.env.IGNORE_LIST || '[]';
+    const ignore_list = JSON.parse(json_list);
+
+    if (ignore_list.length < 1) {
+        return;
+    }
+
+    console.log('Clearing the ignore list...');
+    process.env.IGNORE_LIST = '[]';
+
+}
+
 function registerCommand(commandNames, commandCallback) {
     commands.push(new Command(commandNames, commandCallback));
 }
@@ -79,7 +93,7 @@ function update() {
 
             if (found)
                 continue;
-                
+
         }
 
         if (msg[0] != '/') {
@@ -239,3 +253,4 @@ gio.firebaseDB = firebaseDB;
 
 // Set a timer to process updates every second.
 setInterval(update, 1000);
+setInterval(clearIgnoreList, 1000 * 60 * 5); // Run every 5 mins
