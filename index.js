@@ -245,6 +245,7 @@ registerCommand(['grab'], require('./commands/grab.js'));
 registerCommand(['rquote'], require('./commands/rquote.js'));
 registerCommand(['getquote'], require('./commands/getquote.js'));
 registerCommand(['allquotes'], require('./commands/allquotes.js'));
+registerCommand(['ungrab'], require('./commands/ungrab.js'));
 
 console.log('Defined commands are: ');
 commands.forEach(cmd => console.log(cmd.names));
@@ -261,4 +262,4 @@ gio.firebaseDB = firebaseDB;
 
 // Set a timer to process updates every second.
 setInterval(update, 1000);
-setInterval(updateIgnoreList, 1000 * 60 * 5); // Run every 5 mins
+setInterval(updateIgnoreList, 1000); // Run every second
