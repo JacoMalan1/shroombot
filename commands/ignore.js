@@ -1,17 +1,11 @@
+const User = require('./user.js');
+
 async function callback(sender, args, msg, gio) {
     
-    const admins = JSON.parse(process.env.ADMIN_USERS);
-    
-    let found = false;
-    admins.forEach(admin => {
-        if (admin == sender.first_name) {
-            found = true;
-        }
-    });
-
-    if (!found) {
-        return 'You are not an admin!';
-    }
+    const user = new User(sender.id, sender.first_name, msg.chat.id, gio);
+    const adminLevel = await user.getAdminLevel();
+    if (adminLevel < 1)
+        return 'You have insufficient permissions to perform this action!';
 
     const json_list = process.env.IGNORE_LIST || '[]';
     const ignore_list = JSON.parse(json_list);

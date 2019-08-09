@@ -1,17 +1,14 @@
+const User = require('./user.js');
+
 async function callback(sender, args, msg, gio) {
 
     if (args.length < 1)
         return 'Not enough arguments!';
-
-    let found = false;
-    const adminList = JSON.parse(process.env.ADMIN_USERS);
-    adminList.forEach(user => {
-        if (user == sender.first_name)
-            found = true;
-    });
-
-    if (!found)
-        return 'You are not an admin!';
+        
+    const user = new User(sender.id, sender.first_name, msg.chat.id, gio);
+    const adminLevel = await user.getAdminLevel();
+    if (adminLevel < 0)
+        return 'You have insufficient permissions to perform this action!';
 
     const ungrabID = parseInt(args[0]);
     if (!ungrabID)

@@ -238,7 +238,10 @@ registerCommand(['wikipedia', 'wiki'], require('./commands/wikipedia.js'));
 registerCommand(['wolframalpha', 'wolfram', 'wa', 'calc'], require('./commands/wolframalpha.js'));
 registerCommand(['urban', 'urbandictionary', 'ud'], require('./commands/urban.js'));
 registerCommand(['facepalm'], require('./commands/facepalm.js'));
+
+// Admin commands
 registerCommand(['ignore'], require('./commands/ignore.js'));
+registerCommand(['setadmin'], require('./commands/setadmin.js'));
 
 // QuoteDB commands
 registerCommand(['grab'], require('./commands/grab.js'));
