@@ -96,7 +96,7 @@ function update() {
 
                 if (fromUser.first_name == elem.user)
                     found = true;
-            
+
             });
 
             if (found)
@@ -238,6 +238,7 @@ registerCommand(['wikipedia', 'wiki'], require('./commands/wikipedia.js'));
 registerCommand(['wolframalpha', 'wolfram', 'wa', 'calc'], require('./commands/wolframalpha.js'));
 registerCommand(['urban', 'urbandictionary', 'ud'], require('./commands/urban.js'));
 registerCommand(['facepalm'], require('./commands/facepalm.js'));
+registerCommand(['check'], require('./commands/check.js'));
 
 // Admin commands
 registerCommand(['ignore'], require('./commands/ignore.js'));
