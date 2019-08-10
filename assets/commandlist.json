@@ -59,6 +59,10 @@
         {
             "name": "allquotes",
             "description": "List quotes from a specific user"
+        },
+        {
+            "name": "check",
+            "description": "Check if something is true"
         }
     ]
 }
