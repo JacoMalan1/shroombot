@@ -63,6 +63,10 @@
         {
             "name": "check",
             "description": "Check if something is true"
+        },
+        {
+            "name": "translate, t",
+            "description": "Translate a given string into English"
         }
     ]
 }

@@ -239,6 +239,9 @@ registerCommand(['wolframalpha', 'wolfram', 'wa', 'calc'], require('./commands/w
 registerCommand(['urban', 'urbandictionary', 'ud'], require('./commands/urban.js'));
 registerCommand(['facepalm'], require('./commands/facepalm.js'));
 registerCommand(['check'], require('./commands/check.js'));
+registerCommand(['shutup'], require('./commands/shutup.js'));
+registerCommand(['smite'], require('./commands/smite.js'));
+registerCommand(['translate', 't'], require('./commands/translate.js'));
 
 // Admin commands
 registerCommand(['ignore'], require('./commands/ignore.js'));

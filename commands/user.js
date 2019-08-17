@@ -65,6 +65,57 @@ class User {
 
     }
 
+    async addSpoon() {
+
+        const db = this.gio.firebaseDB;
+        const colName = `${msg.chat.id}_spoon`;
+
+        const docs = await db.collection(colName).doc(this.id.toString()).get();
+
+        let spoonObj = {};
+        let spoonRef;
+        docs.forEach(doc => {
+            spoonObj = doc.data();
+            spoonRef = doc.ref;
+        });
+
+        spoonObj.spoons++;
+        spoonRef.set(spoonObj);
+
+    }
+
+    async remSpoon() {
+
+        const db = this.gio.firebaseDB;
+        const colName = `${msg.chat.id}_spoon`;
+
+        const docs = await db.collection(colName).doc(this.id.toString()).get();
+
+        let spoonObj = {};
+        let spoonRef;
+        docs.forEach(doc => {
+            spoonObj = doc.data();
+            spoonRef = doc.ref;
+        });
+
+        spoonObj.spoons--;
+        spoonRef.set(spoonObj);
+
+    }
+
+    async getSpoonCount() {
+
+        const db = this.gio.firebaseDB;
+        const colName = `${msg.chat.id}_spoon`;
+
+        const docs = await db.collection(colName).doc(this.id.toString()).get();
+        let spoonCount;
+        docs.forEach(doc => spoonCount = doc.data().spoons);
+
+        return spoonCount;
+
+    }
+
     static async fromFirstName(firstName, chatId, gio) {
 
         const response = await sendMethod('getChatAdministrators', { chat_id: chatId });
