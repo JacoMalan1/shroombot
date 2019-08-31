@@ -242,6 +242,7 @@ registerCommand(['check'], require('./commands/check.js'));
 registerCommand(['shutup'], require('./commands/shutup.js'));
 registerCommand(['smite'], require('./commands/smite.js'));
 registerCommand(['translate', 't'], require('./commands/translate.js'));
+registerCommand(['xkcd'], require('./commands/xkcd.js'));
 
 // Admin commands
 registerCommand(['ignore'], require('./commands/ignore.js'));
